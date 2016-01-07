@@ -14,10 +14,10 @@ function exit_fn()
 
 EXITFUN="exit_fn"
 
-if [ -f _scripts/bash_func ]; then
-        . _scripts/bash_func
+if [ -f _toolScripts/bash_func ]; then
+        . _toolScripts/bash_func
 else
-        echo "Error on _scripts/bash_func ..."
+        echo "Error on _toolScripts/bash_func ..."
 fi
 
 
