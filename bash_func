@@ -256,7 +256,7 @@ function check_new()
 function git_sub_update()
 {
 	echo "Update submodules ..."
-	run_cmd git submodule update --recursive
+	run_cmd git submodule update --rebase --remote
 }
 
 function git_push()
