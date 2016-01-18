@@ -410,3 +410,12 @@ function jenkins_get_plugins()
 
 set_default
 trap $EXITFUN 1 2 3 6 15
+
+if [ -z "$1" ]
+then
+	echo "Added bash_func from _toolScript ..."
+else
+	echo ${@} > /tmp/bash_func.tmp.sh
+	chmod 755 /tmp/bash_func.tmp.sh
+	. /tmp/bash_func.tmp.sh
+fi
