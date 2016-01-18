@@ -27,6 +27,7 @@ fi
 link_draft
 if [ "$1" == "$update" ]
 then
+    git_sub_update
     clean_old_logs
     rm_proff_temp
     get_version
@@ -34,6 +35,7 @@ then
     make_diploy
 elif [ "$1" == "$site_test" ]
 then
+    git_sub_update
     clean_old_logs
     rm_proff_temp
     #get_version
@@ -42,6 +44,7 @@ then
     run_htmlproof
 elif [ "$1" == "$site_run" ]
 then
+   git_sub_update
    clean_old_logs
    rm_proff_temp
    #get_version
