@@ -261,7 +261,8 @@ function git_sub_update()
 	echo "Update submodules ..."
 	temp=$run_cmd_debug
 	run_cmd_debug="1"
-	rebase=$(run_cmd git submodule update --rebase --remote --no-fetch | grep "rebased into")
+	temp_rebase=$(run_cmd git submodule update --rebase --remote --no-fetch)
+ 	rebase=$(echo $temp_rebase | grep "rebased into")
 	run_cmd_debug=$temp
 	if [[ $rebase == *"rebased into"* ]]
 	then	
