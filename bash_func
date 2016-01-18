@@ -256,7 +256,11 @@ function check_new()
 function git_sub_update()
 {
 	echo "Update submodules ..."
-	run_cmd git submodule update --rebase --remote
+	temp=$run_cmd_debug
+	run_cmd_debug="1"
+	run_cmd git submodule update --rebase --remote --no-fetch
+	run_cmd_debug=$temp
+	run_cmd git submodule foreach --recursive git pull
 }
 
 function git_push()
