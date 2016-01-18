@@ -4,6 +4,7 @@ run_cmd_debug=1
 
 WORKSPACE=$(pwd)
 COMMIT_TIME=$(date +"%m-%d-%Y-%H:%M")
+base_script=${0}
 
 COMMIT_MSG=$1
 if [ -z "$COMMIT_MSG" ]; then
