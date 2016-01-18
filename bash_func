@@ -31,6 +31,9 @@ function set_default()
 	if [ -z $EXITFUN ]; then
 		EXITFUN="exit_process"
 	fi
+	if [ -z $base_script ]; then
+		base_script=${0}
+	fi
 }
 
 function run_cmd()
@@ -258,9 +261,16 @@ function git_sub_update()
 	echo "Update submodules ..."
 	temp=$run_cmd_debug
 	run_cmd_debug="1"
-	run_cmd git submodule update --rebase --remote --no-fetch
+	rebase=$(run_cmd git submodule update --rebase --remote --no-fetch | grep "rebased into")
 	run_cmd_debug=$temp
-	run_cmd git submodule foreach --recursive git pull
+	if [[ $rebase == *"rebased into"* ]]
+	then	
+		echo "Somthing is changed ..."
+		run_cmd git submodule foreach --recursive git pull
+		echo "Restarting ...."
+		$base_script
+		exit 1
+	fi
 }
 
 function git_push()
