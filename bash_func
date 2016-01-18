@@ -259,7 +259,6 @@ function check_new()
 function git_sub_update()
 {
 	echo "Update submodules ..."
-	temp=$run_cmd_debug
 	run_cmd git submodule update --rebase --remote --no-fetch 
  	rebase=$(cat $run_cmd_log_file | grep "rebased into")
 	if [[ $rebase == *"rebased into"* ]]
