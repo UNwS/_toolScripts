@@ -28,6 +28,7 @@ fi
 
 ### MAIN ###
 check_git
+git_sub_update
 link_draft
 
 clean_old_logs
