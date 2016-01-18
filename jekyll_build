@@ -6,6 +6,7 @@ site_test="-t"
 site_run="-r"
 update="-u"
 WORKSPACE=$(pwd)
+base_script=${0}
 
 function exit_fn()
 {
