@@ -11,7 +11,7 @@ function check_git()
 {
 	if type "git" > /dev/null 2>&1 ; then
         	is_git=1
-		#git --version
+		git --version
 	else
 		is_git=0
 	fi
