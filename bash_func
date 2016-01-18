@@ -117,12 +117,19 @@ function make_diploy()
 function clean_old_logs()
 {
 	echo "Clearing old files ..."
-	clean_file _site
-        clean_file .sass-cache
-	clean_file versions.json
-	clean_file Gemfile.lock 
-	clean_file $run_cmd_log_file
-	clean_file commit.template
+	if [ -f .oldfiles ]; then
+		for tempfile in $(cat .oldfiles)
+		do
+			clean_file $tempfile
+		done
+	else
+		clean_file _site
+        	clean_file .sass-cache
+		clean_file versions.json
+		clean_file Gemfile.lock 
+		clean_file $run_cmd_log_file
+		clean_file commit.template
+	fi
 }
 
 function git_commit_msg()
@@ -244,6 +251,12 @@ function check_new()
 		fi
 	done
 	unset IFS
+}
+
+function git_sub_update()
+{
+	echo "Update submodules ..."
+	run_cmd git submodule update
 }
 
 function git_push()
