@@ -260,12 +260,8 @@ function git_sub_update()
 {
 	echo "Update submodules ..."
 	temp=$run_cmd_debug
-	run_cmd_debug="1"
-	run_cmd git submodule update --rebase --remote --no-fetch > bash_func.tmp.log
-	run_cmd_debug=$temp
- 	rebase=$(cat bash_func.tmp.log | grep "rebased into")
-	clean_file bash_func.tmp.log
-	run_cmd_debug=$temp
+	run_cmd git submodule update --rebase --remote --no-fetch 
+ 	rebase=$(cat $run_cmd_log_file | grep "rebased into")
 	if [[ $rebase == *"rebased into"* ]]
 	then	
 		echo "Somthing is changed ..."
