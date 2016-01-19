@@ -19,6 +19,11 @@ function check_git()
 
 function set_default()
 {
+	base_step=$(cat bash_func.lock | sed 's/^[ \t]*//;s/[ \t]*$//' )
+	if [ -z $base_step ]; then
+		base_step=1
+		echo $base_step > bash_func.lock
+	fi
         if [ -z $run_cmd_debug ]; then
                 run_cmd_debug=0
         fi
@@ -33,6 +38,9 @@ function set_default()
 	fi
 	if [ -z $base_script ]; then
 		base_script=${0}
+	fi
+	if [ -z $base_shell ]; then
+		base_shell=/bin/bash
 	fi
 }
 
@@ -266,8 +274,26 @@ function git_sub_update()
 		echo "Somthing is changed ..."
 		run_cmd git submodule foreach --recursive git pull
 		echo "Restarting ...."
-		$base_script
-		exit 1
+		base_step=$(cat bash_func.lock | sed 's/^[ \t]*//;s/[ \t]*$//' )
+		if [ -z $base_step ]
+		then
+			base_step=99
+			echo $base_step > bash_func.lock
+			exit 1
+		fi
+		if [ "$base_step" -gt "1" ]
+		then
+			echo "Somthing gone wrong ..."
+			exit 1
+		else
+			base_step=$((base_step+1))
+			echo $base_step > bash_func.lock
+			$base_shell $base_script
+			base_step=$(cat bash_func.lock | sed 's/^[ \t]*//;s/[ \t]*$//' )
+			base_step=$((base_step-1))
+			echo $base_step > bash_func.lock
+			exit 1
+		fi
 	fi
 }
 
