@@ -442,8 +442,11 @@ trap $EXITFUN 1 2 3 6 15
 if [ -z "$1" ]
 then
 	echo "Added bash_func from _toolScript ..."
-else
+elif [ "${0##*/}" == "bash_func" ]
+then
 	echo ${@} > /tmp/bash_func.tmp.sh
 	chmod 755 /tmp/bash_func.tmp.sh
 	. /tmp/bash_func.tmp.sh
+else
+	echo "Somthing gone wrong ..."
 fi
