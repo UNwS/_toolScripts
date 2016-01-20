@@ -19,7 +19,11 @@ function check_git()
 
 function set_default()
 {
-	base_step=$(cat bash_func.lock | sed 's/^[ \t]*//;s/[ \t]*$//' )
+	if [ -f bash_func.lock ]; then
+		base_step=$(cat bash_func.lock | sed 's/^[ \t]*//;s/[ \t]*$//' )
+	else
+		base_step=0
+	fi
 	if [ -z $base_step ]; then
 		base_step=1
 		echo $base_step > bash_func.lock
