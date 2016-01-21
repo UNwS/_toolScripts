@@ -342,6 +342,7 @@ function rm_proff_temp()
 
 function site_run()
 {
+	port=$1
         if [ ! -f ./versions.json ]; then
                 echo "Build with last updated version.json ..."
                 copy_file deploy/versions.json versions.json
@@ -349,10 +350,10 @@ function site_run()
 	echo "Run jekyll server ...."
         if [ "$run_cmd_debug" -eq "1" ]; then
 		print_sep
-                bundle exec jekyll serve --verbose --trace
+                bundle exec jekyll serve --port $port --verbose --trace
                 print_sep
 	else
-		run_cmd bundle exec jekyll serve --verbose --trace
+		run_cmd bundle exec jekyll serve --port $port --verbose --trace
 	fi
 }
 
