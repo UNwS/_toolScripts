@@ -46,6 +46,11 @@ function set_default()
 	if [ -z $base_shell ]; then
 		base_shell=/bin/bash
 	fi
+	if [ -f _config_dev.yml ]; then
+		config_file="_config.yml _config_dev.yml"
+	else
+		config_file="_config.yml"
+	fi
 }
 
 function run_cmd()
@@ -325,7 +330,7 @@ function site_build()
 		copy_file deploy/versions.json versions.json
 	fi
 	echo "Build jekyll site ..."
-	run_cmd bundle exec jekyll build --verbose --trace
+	run_cmd bundle exec jekyll build --verbose --trace --config $config_file
 }
 
 function run_htmlproof()
@@ -350,10 +355,10 @@ function site_run()
 	echo "Run jekyll server ...."
         if [ "$run_cmd_debug" -eq "1" ]; then
 		print_sep
-                bundle exec jekyll serve --port $port --verbose --trace
+                bundle exec jekyll serve --port $port --verbose --trace --config $config_file
                 print_sep
 	else
-		run_cmd bundle exec jekyll serve --port $port --verbose --trace
+		run_cmd bundle exec jekyll serve --port $port --verbose --trace --config $config_file
 	fi
 }
 
@@ -362,8 +367,10 @@ function link_draft()
 	if [ -d _draft ] || [ -L _drafts ]; then
 		echo "The draft present ..."
 	else
-		echo "Creting _draft link ..."
-		run_cmd ln -s ../../../work-personal/_drafts .
+		if [ -d ../../../work-personal/_drafts ]; then
+			echo "Creting _draft link ..."
+			run_cmd ln -s ../../../work-personal/_drafts .
+		fi
 	fi 
 }
 
