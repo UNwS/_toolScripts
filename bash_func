@@ -336,7 +336,8 @@ function site_build()
 function run_htmlproof()
 {
 	echo "Run html proof ..."
-	run_cmd bundle exec htmlproof ./_site --disable-external
+	#run_cmd bundle exec htmlproof ./_site --disable-external
+	htmlproofer ./_site --disable-external
 }
 
 function rm_proff_temp()
