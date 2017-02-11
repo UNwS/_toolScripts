@@ -349,8 +349,8 @@ function site_build()
 function run_htmlproof()
 {
 	echo "Run html proof ..."
-	IS_htmlproofer=$(type -P htmlproofer | grep htmlproofer | wc -l)
-	if [ "$IS_htmlproofer" == "1" ]; then
+	IS_htmlproofer=$(check_cmd htmlproofer)
+	if [ "$IS_htmlproofer" == "$TRUE" ]; then
 		run_cmd htmlproofer ./_site --check-favicon --check-html --check-img-http --check-opengraph --report-invalid-tags --report-missing-names --report-script-embeds --disable-external
 	else
 		run_cmd bundle exec htmlproof ./_site --disable-external
