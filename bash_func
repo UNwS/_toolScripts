@@ -351,7 +351,7 @@ function run_htmlproof()
 	echo "Run html proof ..."
 	IS_htmlproofer=$(type -P htmlproofer | grep htmlproofer | wc -l)
 	if [ "$IS_htmlproofer" == "1" ]; then
-		htmlproofer ./_site --disable-external
+		run_cmd htmlproofer ./_site --disable-external
 	else
 		run_cmd bundle exec htmlproof ./_site --disable-external
 	fi
