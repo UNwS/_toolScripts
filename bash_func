@@ -19,6 +19,12 @@ function check_git()
 
 function set_default()
 {
+	if [ -z $TRUE ]; then
+		TRUE=1
+	fi
+        if [ -z $FALSE ]; then
+                FALSE=0
+        fi
 	if [ -f bash_func.lock ]; then
 		base_step=$(cat bash_func.lock | sed 's/^[ \t]*//;s/[ \t]*$//' )
 	else
@@ -51,6 +57,13 @@ function set_default()
 	else
 		config_file="_config.yml"
 	fi
+}
+
+function check_cmd()
+{
+	test_cmd=$1
+	IS_cmd=$(type -P $test_cmd | grep $test_cmd | wc -l)
+	return $IS_cmd
 }
 
 function run_cmd()
@@ -336,8 +349,12 @@ function site_build()
 function run_htmlproof()
 {
 	echo "Run html proof ..."
-	#run_cmd bundle exec htmlproof ./_site --disable-external
-	htmlproofer ./_site --disable-external
+	IS_htmlproofer=$(type -P htmlproofer | grep htmlproofer | wc -l)
+	if [ "$IS_htmlproofer" == "1" ]; then
+		htmlproofer ./_site --disable-external
+	else
+		run_cmd bundle exec htmlproof ./_site --disable-external
+	fi
 }
 
 function rm_proff_temp()
