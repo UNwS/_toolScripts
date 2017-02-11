@@ -59,6 +59,7 @@ function set_default()
 	fi
 }
 
+# TODO
 function check_cmd()
 {
 	test_cmd=$1
@@ -349,7 +350,7 @@ function site_build()
 function run_htmlproof()
 {
 	echo "Run html proof ..."
-	IS_htmlproofer=$(run_cmd check_cmd htmlproofer)
+	IS_htmlproofer=$(type -P htmlproofer | grep htmlproofer | wc -l )
 	if [ "$IS_htmlproofer" == "$TRUE" ]; then
 		run_cmd htmlproofer ./_site --check-favicon --check-html --check-img-http --check-opengraph --report-invalid-tags --report-missing-names --report-script-embeds --disable-external
 	else
