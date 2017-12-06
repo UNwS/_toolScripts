@@ -36,6 +36,7 @@ clean_old_logs
 
 #get_version
 #gem_update
+run_site_dyna
 
 site_build
 make_diploy
