@@ -337,6 +337,15 @@ function gem_update()
 	run_cmd bundle update
 }
 
+function run_site_dyna()
+{
+	echo "Build all dynamic pages ..."
+	for command in $(cat dynabuild.txt)
+	do
+		run_cmd $command
+	done
+}
+
 function site_build()
 {
 	if [ ! -f ./versions.json ]; then
