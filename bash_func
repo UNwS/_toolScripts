@@ -340,10 +340,7 @@ function gem_update()
 function run_site_dyna()
 {
 	echo "Build all dynamic pages ..."
-	for command in $(cat dynabuild.txt)
-	do
-		run_cmd $command
-	done
+	/bin/bash dynabuild.txt
 }
 
 function site_build()
