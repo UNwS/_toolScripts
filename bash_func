@@ -339,8 +339,13 @@ function gem_update()
 
 function run_site_dyna()
 {
-	echo "Build all dynamic pages ..."
-	/bin/bash dynabuild.txt
+	if [ -f dynabuild.txt ]
+	then
+		echo "Build all dynamic pages ..."
+		/bin/bash dynabuild.txt
+	else
+		echo "No dynabuild.txt found, nothing to build on commit ..."
+	fi
 }
 
 function site_build()
