@@ -300,6 +300,7 @@ function git_sub_update()
 		run_cmd git submodule foreach --recursive git pull
 		run_cmd git submodule foreach git pull origin master
 		run_cmd git submodule update
+		run_cmd git submodule update --rebase --remote
                 EXITONERROR=$temp
 		echo "Restarting ...."
 		base_step=$(cat bash_func.lock | sed 's/^[ \t]*//;s/[ \t]*$//' )
