@@ -296,6 +296,8 @@ function git_sub_update()
 	then	
 		echo "Somthing is changed ..."
 		run_cmd git submodule foreach --recursive git pull
+		run_cmd git submodule foreach git pull origin master
+		run_cmd git submodule update
 		echo "Restarting ...."
 		base_step=$(cat bash_func.lock | sed 's/^[ \t]*//;s/[ \t]*$//' )
 		if [ -z $base_step ]
