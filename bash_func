@@ -290,6 +290,7 @@ function check_new()
 
 function git_sub_update()
 {
+        run_cmd git submodule foreach --recursive git pull
 	echo "Update submodules ..."
 	run_cmd git submodule update --rebase --remote 
  	rebase=$(cat $run_cmd_log_file | grep "rebased into")
@@ -298,10 +299,8 @@ function git_sub_update()
 		echo "Somthing is changed ..."
 	        temp=$EXITONERROR
 		EXITONERROR="no"
-		run_cmd git submodule foreach --recursive git pull
 		run_cmd git submodule foreach git pull origin master
 		run_cmd git submodule update
-		run_cmd git submodule update --rebase --remote
                 EXITONERROR=$temp
 		echo "Restarting ...."
 		base_step=$(cat bash_func.lock | sed 's/^[ \t]*//;s/[ \t]*$//' )
