@@ -295,9 +295,12 @@ function git_sub_update()
 	if [[ $rebase == *"rebased into"* ]]
 	then	
 		echo "Somthing is changed ..."
+	        temp=$EXITONERROR
+		EXITONERROR="no"
 		run_cmd git submodule foreach --recursive git pull
 		run_cmd git submodule foreach git pull origin master
 		run_cmd git submodule update
+                EXITONERROR=$temp
 		echo "Restarting ...."
 		base_step=$(cat bash_func.lock | sed 's/^[ \t]*//;s/[ \t]*$//' )
 		if [ -z $base_step ]
