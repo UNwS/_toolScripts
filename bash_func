@@ -342,7 +342,7 @@ function run_site_dyna()
 	if [ -f dynabuild.txt ]
 	then
 		echo "Build all dynamic pages ..."
-		/bin/bash dynabuild.txt
+		run_cmd /bin/bash dynabuild.txt
 	else
 		echo "No dynabuild.txt found, nothing to build on commit ..."
 	fi
