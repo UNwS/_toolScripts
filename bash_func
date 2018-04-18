@@ -297,7 +297,7 @@ function git_sub_update()
 		echo "Somthing is changed ..."
 	        temp=$EXITONERROR
 		EXITONERROR="no"
-		run_cmd git submodule update --remote --merge
+		run_cmd git submodule update --remote --merge master
                 EXITONERROR=$temp
 		echo "Restarting ...."
 		base_step=$(cat bash_func.lock | sed 's/^[ \t]*//;s/[ \t]*$//' )
