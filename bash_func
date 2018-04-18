@@ -289,7 +289,6 @@ function check_new()
 
 function git_sub_update()
 {
-        run_cmd git submodule foreach --recursive git pull
 	echo "Update submodules ..."
 	run_cmd git submodule update --rebase --remote 
  	rebase=$(cat $run_cmd_log_file | grep "rebased into")
