@@ -1,6 +1,5 @@
 # The toolScripts bash func
 # By Vipin M <vipmadha@gmail.com>
-# this is test
 
 function print_sep()
 {
