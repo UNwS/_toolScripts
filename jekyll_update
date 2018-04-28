@@ -20,6 +20,8 @@ is_git=0
 
 function exit_process()
 {
+    # hack
+    git submodule foreach git pull origin master
     echo "Exiting ..."
     clean_old_logs
     rm_proff_temp
