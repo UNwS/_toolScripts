@@ -1,6 +1,11 @@
 #!/bin/bash
 
-run_cmd_debug=1
+if [ -f ./.debug ]
+then
+        run_cmd_debug=1
+else
+        run_cmd_debug=0
+fi
 
 WORKSPACE=$(pwd)
 COMMIT_TIME=$(date +"%m-%d-%Y-%H:%M")
