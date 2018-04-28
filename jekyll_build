@@ -12,6 +12,7 @@ base_script=${0}
 
 function exit_fn()
 {
+    git submodule foreach git pull origin master
     echo "Exiting ..."
     clean_old_logs
     rm_proff_temp
