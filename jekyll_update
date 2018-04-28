@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# this is test
-
 if [ -f ./.debug ]
 then
         run_cmd_debug=1
