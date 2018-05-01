@@ -12,6 +12,7 @@ base_script=${0}
 
 function exit_fn()
 {
+    # hack 
     git submodule foreach git pull origin master
     git submodule update --rebase --remote
     echo "Exiting ..."
