@@ -33,10 +33,11 @@ usage() { echo "$0 usage:" && grep " .)\ #" $0; exit 0; }
 build_run=0
 build_test=0
 build_update=0
+build_page=0
 port=4000
 
 [ $# -eq 0 ] && usage
-while getopts "turp:h" arg; do
+while getopts "turbp:h" arg; do
   case $arg in
     t) # test
       build_test=1
@@ -46,6 +47,9 @@ while getopts "turp:h" arg; do
       ;;
     r) # run
       build_run=1
+      ;;
+    b) # build
+      build_page=1
       ;;
     p) # port
       port=${OPTARG}
@@ -77,6 +81,15 @@ then
     run_site_dyna
     site_build
     run_htmlproof
+elif [ $build_page == 1 ]
+then
+    git_sub_update
+    clean_old_logs
+    rm_proff_temp
+    #get_version
+    #gem_update
+    run_site_dyna
+    site_build
 elif [ $build_run == 1 ]
 then
    git_sub_update
