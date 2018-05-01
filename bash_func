@@ -398,6 +398,7 @@ function site_run()
                 bundle exec jekyll serve --port $port --verbose --trace --config $config_file
                 print_sep
 	else
+		echo "Loading site to http://127.0.0.1:$port/ ..."
 		run_cmd bundle exec jekyll serve --port $port --verbose --trace --config $config_file
 	fi
 }
