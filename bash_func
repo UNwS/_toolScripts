@@ -315,6 +315,9 @@ function git_sub_update()
 			echo "Somthing gone wrong ..."
 			# Hack need to fix it
 			run_cmd git submodule update --rebase --remote
+			print_sep
+			echo "Re-Run the command ..."
+			print_sep		
 			exit 1
 		else
 			base_step=$((base_step+1))
