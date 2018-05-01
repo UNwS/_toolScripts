@@ -313,7 +313,8 @@ function git_sub_update()
 		if [ "$base_step" -gt "1" ]
 		then
 			echo "Somthing gone wrong ..."
-			git submodule update --rebase --remote
+			# Hack need to fix it
+			run_cmd git submodule update --rebase --remote
 			exit 1
 		else
 			base_step=$((base_step+1))
