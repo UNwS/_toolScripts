@@ -53,7 +53,7 @@ function set_default()
 		base_shell=/bin/bash
 	fi
 	if [ -f tests/_config_dev.yml ]; then
-		config_file="_config.yml tests/_config_dev.yml"
+		config_file="_config.yml, tests/_config_dev.yml"
 	else
 		config_file="_config.yml"
 	fi
